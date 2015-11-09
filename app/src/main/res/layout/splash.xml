@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fontify="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageSwitcher
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/fonds_search"
+        >
+
+    </ImageSwitcher>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#000000"
+        android:alpha="0.3"
+        ></LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/logo"
+            />
+
+        <com.cumana.fonts.TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/destino"
+            android:gravity="center_horizontal"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            fontify:font="@string/Harabara"
+            />
+
+        <com.cumana.fonts.TextView
+            android:id="@+id/place"
+            style="@style/labelSite"
+            android:text="@string/castillo_san_antonio"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            fontify:font="@string/RobotoRegular"
+            />
+
+
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:minHeight="20dp"
+            android:minWidth="250dp"
+            android:progress="0" />
+
+        <com.cumana.fonts.TextView
+            android:id="@+id/percentage"
+            style="@style/labelSubtitle"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            fontify:font="@string/RobotoRegular"
+            />
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        >
+        <include
+            layout="@layout/activity_main"
+            app:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</RelativeLayout>

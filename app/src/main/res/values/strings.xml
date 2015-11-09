@@ -1,0 +1,103 @@
+<resources>
+
+
+    <!--
+
+    1-Name APP
+    |
+    2-Path fonts
+    |
+    3-Titles splash
+    |   |
+    |   3.1 Title: ¡Conocerla es tu destino!
+    |   3.2 Title: Castillo “San Antonio de la Eminencia”
+    |   3.3 Title: Monumento “El Indio”
+    |   3.4 Title: Iglesia “Santa Inés”
+    |
+    4- Text menu
+    |   |
+    |   4.1 Title: Search
+    |   4.2 Title: CUMANÁ
+    |   4.3 Subtitle: La Primogénita del Continente
+    |   4.4 Title menu: Instituciones,Historia,Turismo y descarga
+    |
+    5- Text List
+    |   |
+    |   5.1 Title head Menu: buscar,Mapa
+    |
+    6- Text Developers
+    |   |
+    |   |
+    n- Error connecting
+
+
+
+
+    -->
+
+
+    <!-- 1. Name APP-->
+        <string name="app_name">Cumana 500</string>
+
+    <!-- 2.Path fonts -->
+        <string name="Harabara">fonts/Harabara.otf</string>
+        <string name="kalinga">fonts/kalinga.ttf</string>
+        <string name="MyriadProSemiBold">fonts/MyriadProSemibold.otf</string>
+        <string name="RobotoMedium">fonts/RobotoMedium.ttf</string>
+        <string name="RobotoRegular">fonts/RobotoRegular.ttf</string>
+        <string name="RobotoLight">fonts/RobotoLight.ttf</string>
+        <string name="RobotoThin">fonts/RobotoThin.ttf</string>
+    <!-- END Path fonts -->
+
+    <!-- 3.Titles splash -->
+        <!--3.1 Conocerla es tu destino -->
+        <string name="destino">¡Conocerla es tu destino!</string>
+        <!--3.2 Castillo “San Antonio de la Eminencia” -->
+        <string name="castillo_san_antonio">Castillo “San Antonio de la Eminencia”</string>
+        <!--3.3 Monumento “El Indio”-->
+        <string name="monumento_indio">Monumento “El Indio”</string>
+        <!--3.4 Iglesia “Santa Inés”-->
+        <string name="iglesia_ines">Iglesia “Santa Inés”</string>
+    <!-- END title splash -->
+
+    <!-- 4.Text menu-->
+        <!-- 4.1 Title: CUMANÁ -->
+        <string name="buscar">Buscar</string>
+        <!-- 4.2 Title: CUMANÁ -->
+        <string name="ciudad">CUMANÁ</string>
+        <!-- 4.3 Title:  La Primogénita del Continente-->
+        <string name="primogenita">La Primogénita del Continente</string>
+        <!-- 4.4 Title menu: Instituciones,Historia,Turismo y descargas-->
+        <string name="institucion">Instituciones</string>
+        <string name="historia">Historia</string>
+        <string name="primogenita_">Primogénita\ndel Continente</string>
+        <string name="personajes_">Personajes\nEmblematicos</string>
+        <string name="turismo">Turismo</string>
+        <string name="movilidad">Movilidad</string>
+    <!-- END Text menu -->
+
+    <!-- 5.Text menu-->
+    <!-- 5.1 Title: CUMANÁ -->
+    <!-- Tag buscar ya esta declaro arriba-->
+    <!-- 5.2 Title: CUMANÁ -->
+    <string name="mapa">Mapa</string>
+    <!-- END Text menu -->
+
+    <!-- 5.Developeres-->
+    <string name="desarrolladores">Desarroladores</string>
+    <!-- END Developeres -->
+
+
+    <!-- 6. History-->
+    <string name="personajes">Personajes</string>
+    <string name="antano">Antaño</string>
+    <!-- END history-->
+
+
+    <!-- n. Error connecting -->
+    <string name="Oops">Oops</string>
+    <string name="ErrorConneting">Error de conexión</string>
+    <string name="Retry">Reintentar</string>
+    <!-- END connecting-->
+
+</resources>

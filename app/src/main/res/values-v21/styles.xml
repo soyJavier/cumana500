@@ -1,0 +1,167 @@
+<resources>
+
+    <!--
+
+    1- Theme splash
+    |  |
+    |  1.1 Label splash site
+    |
+    2- Theme menu
+    |   |
+    |   2.1 Label subtitle
+    |   2.2 Label Buttons
+    |   2.3 Background Buttons
+    |
+    3- Theme List
+    |   |
+    |   3.1 Label List
+    |
+    |
+    |
+    |
+    5- Theme Developers
+    |
+    |
+
+
+    -->
+
+
+    <!--1.Theme splash-->
+        <style name="ThemeSplash" parent="Theme.AppCompat.NoActionBar">
+            <item name="colorPrimary">@android:color/transparent</item>
+            <item name="colorPrimaryDark">@android:color/transparent</item>
+            <item name="android:colorAccent">#FFFFFF</item>
+            <item name="android:textColorPrimary">#FFFFFF</item>
+            <item name="windowActionBarOverlay">true</item>
+
+            <item name="android:statusBarColor">@android:color/transparent</item>
+            <item name="android:windowActionBarOverlay">true</item>
+            <item name="android:windowTranslucentNavigation">true</item>
+            <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+            <item name="android:windowTranslucentStatus">true</item>
+        </style>
+
+
+        <!-- 1.1 Label name site -->
+        <style name="labelSite">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_margin">5dp</item>
+            <item name="android:background">#29ABE2</item>
+            <item name="android:gravity">center_horizontal</item>
+            <item name="android:paddingLeft">10dp</item>
+            <item name="android:paddingRight">10dp</item>
+            <item name="android:paddingBottom">5dp</item>
+            <item name="android:paddingTop">5dp</item>
+            <item name="android:alpha">0.8</item>
+        </style>
+    <!-- END Theme splash-->
+
+
+    <!--2.Theme Menu-->
+        <style name="ThemeMenu" parent="Theme.AppCompat.NoActionBar">
+            <item name="colorPrimary">@android:color/transparent</item>
+            <item name="colorPrimaryDark">@android:color/transparent</item>
+            <item name="colorAccent">#FFFFFF</item>
+            <item name="android:textColorPrimary">#FFFFFF</item>
+            <item name="android:homeAsUpIndicator">@drawable/ic_crown</item>
+            <item name="homeAsUpIndicator">@drawable/ic_crown</item>
+            <item name="windowActionBarOverlay">true</item>
+
+            <item name="android:statusBarColor">@android:color/transparent</item>
+            <item name="android:windowActionBarOverlay">true</item>
+            <item name="android:windowTranslucentNavigation">true</item>
+            <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+            <item name="android:windowTranslucentStatus">true</item>
+        </style>
+
+        <!-- 2.1 Label subtitle -->
+        <style name="labelSubtitle">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_margin">5dp</item>
+            <item name="android:gravity">center_horizontal</item>
+        </style>
+        <!-- 2.2 Label Buttons -->
+        <style name="labelButtons">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:gravity">center_horizontal</item>
+            <item name="android:textSize">14dp</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="font">@string/RobotoRegular</item>
+        </style>
+        <!-- 2.3 Background Buttons -->
+        <style name="backgroundButtons">
+            <item name="android:layout_width">105dp</item>
+            <item name="android:layout_height">105dp</item>
+            <item name="android:minWidth">105dp</item>
+            <item name="android:gravity">center</item>
+            <item name="android:orientation">vertical</item>
+            <item name="android:padding">5dp</item>
+            <item name="android:layout_margin">15dp</item>
+        </style>
+    <!-- END Theme menu-->
+
+    <!--3.Theme List -->
+        <style name="ThemeList" parent="Theme.AppCompat.NoActionBar">
+            <item name="colorPrimary">@color/colorPrimary</item>
+            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            <item name="colorAccent">#FFFFFF</item>
+            <item name="android:textColorPrimary">#FFFFFF</item>
+            <item name="android:homeAsUpIndicator">@drawable/ic_menu</item>
+            <item name="homeAsUpIndicator">@drawable/ic_menu</item>
+            <item name="windowActionBarOverlay">true</item>
+        </style>
+        <!-- 3.1 Label List -->
+        <style name="labelList">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="font">@string/RobotoRegular</item>
+            <item name="android:textColor">#000000</item>
+        </style>
+
+
+
+    <!--5.Theme Developers-->
+    <style name="ThemeDevelopers" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
+        <item name="homeAsUpIndicator">@drawable/ic_back</item>
+        <item name="windowActionBarOverlay">true</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">19dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ExpandedAppBarPlus1" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">19dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="CollapsedAppBarPlus1" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">19dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>

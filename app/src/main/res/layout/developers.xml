@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fontify="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/bg_developers"
+        android:id="@+id/fondo"
+        />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                >
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/avatar"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FFFFFF"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@mipmap/developer_1"
+                    />
+
+
+                <com.github.library.bubbleview.BubbleTextVew
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:padding="6dp"
+                    android:id="@+id/description_1"
+                    android:textColor="@android:color/black"
+                    fontify:font="@string/RobotoThin"
+                    app:arrowWidth="15dp"
+                    app:angle="1dp"
+                    app:arrowHeight="10dp"
+                    app:arrowPosition="2dp"
+                    app:arrowLocation="left"
+                    android:alpha="0.8"
+                    android:lineSpacingExtra="4dp"
+                    app:bubbleColor="#FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_twitter"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="100dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_linkedin"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="10"
+                >
+
+                <com.github.library.bubbleview.BubbleTextVew
+                    android:layout_weight="8"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/description_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:textColor="@android:color/black"
+                    fontify:font="@string/RobotoThin"
+                    app:arrowWidth="15dp"
+                    android:textSize="12dp"
+                    app:angle="2dp"
+                    app:arrowHeight="10dp"
+                    app:arrowPosition="80dp"
+                    android:lineSpacingExtra="4dp"
+                    app:arrowLocation="right"
+                    android:alpha="0.8"
+                    app:bubbleColor="#FFFFFF"/>
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_weight="2"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FFFFFF"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/developer_2"
+                    android:layout_gravity="bottom"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_gravity="right"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_twitter"
+                android:layout_marginRight="2dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_linkedin"
+                android:layout_marginRight="100dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            >
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFF"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/developer_3"
+                />
+
+
+            <com.github.library.bubbleview.BubbleTextVew
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:textColor="@android:color/black"
+                fontify:font="@string/RobotoThin"
+                app:arrowWidth="15dp"
+                app:angle="2dp"
+                android:alpha="0.8"
+                android:textSize="12dp"
+                android:id="@+id/description_3"
+                app:arrowHeight="10dp"
+                android:lineSpacingExtra="4dp"
+                app:arrowPosition="2dp"
+                app:arrowLocation="left"
+                app:bubbleColor="#FFFFFF"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_twitter"
+                android:layout_marginRight="2dp"
+                android:layout_marginLeft="100dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_linkedin"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        >
+        <include
+            layout="@layout/toolbar_menu"
+            app:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fontify="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/bg_menu"
+        android:id="@+id/fondo"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#000000"
+        android:alpha="0.2"
+        ></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/menu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:paddingTop="10dp"
+        >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/logo"
+            android:layout_margin="5dp"
+            />
+
+        <com.cumana.fonts.TextView
+            android:id="@+id/place"
+            style="@style/labelSubtitle"
+            android:text="@string/primogenita"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            fontify:font="@string/RobotoThin"
+            />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        style="@style/backgroundButtons"
+                        android:background="@drawable/circle_menu_green"
+                        android:id="@+id/institucion"
+                        >
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@mipmap/ic_instituciones"
+                            />
+
+                        <com.cumana.fonts.TextView
+                            style="@style/labelButtons"
+                            android:text="@string/institucion"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/backgroundButtons"
+                        android:background="@drawable/circle_menu_blue"
+                        android:id="@+id/historia"
+                        >
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@mipmap/ic_history"
+                            />
+
+
+                        <com.cumana.fonts.TextView
+                            style="@style/labelButtons"
+                            android:text="@string/historia"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <LinearLayout
+                        style="@style/backgroundButtons"
+                        android:background="@drawable/circle_menu_orange"
+                        android:id="@+id/turismo"
+                        >
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@mipmap/ic_turismo"
+                            />
+
+                        <com.cumana.fonts.TextView
+                            style="@style/labelButtons"
+                            android:text="@string/turismo"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/backgroundButtons"
+                        android:background="@drawable/circle_menu_red"
+                        android:id="@+id/descargas"
+                        >
+
+                        <ImageView
+                            android:layout_width="55dp"
+                            android:layout_height="50dp"
+                            android:src="@mipmap/ic_mobility"
+                            />
+
+                        <com.cumana.fonts.TextView
+                            style="@style/labelButtons"
+                            android:text="@string/movilidad"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </TableRow>
+
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+    <!-- Borde de la zona seleccionada -->
+    <com.cumana.fonts.TextView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/borders"
+        android:layout_below="@id/menu"
+        android:layout_marginTop="20dp"
+        android:id="@+id/borde"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_below="@id/borde"
+        android:id="@+id/clima"
+        android:gravity="center"
+        >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_height="0dp">
+
+                    <com.cumana.fonts.TextView
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:textSize="25dp"
+                        android:id="@+id/today"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <ImageView
+                        android:src="@mipmap/lluvia_dia"
+                        android:gravity="center"
+                        android:id="@+id/day_1"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp" />
+
+                    <ImageView
+                        android:src="@mipmap/lluvia_noche"
+                        android:gravity="center"
+                        android:id="@+id/day_2"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp" />
+
+                    <ImageView
+                        android:src="@mipmap/soleado"
+                        android:id="@+id/day_3"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp" />
+
+
+                    <ImageView
+                        android:src="@mipmap/nublado_sol"
+                        android:gravity="center"
+                        android:id="@+id/day_4"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:weightSum="10"
+                android:layout_weight="1"
+                >
+
+                <com.cumana.fonts.TextView
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:text="Hoy"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <com.cumana.fonts.TextView
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:id="@+id/text_day_1"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <com.cumana.fonts.TextView
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:id="@+id/text_day_2"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <com.cumana.fonts.TextView
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:id="@+id/text_day_3"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <com.cumana.fonts.TextView
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:id="@+id/text_day_4"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+    </LinearLayout>
+
+    <com.cumana.fonts.TextView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/borders"
+        android:layout_below="@+id/clima"
+        android:layout_marginTop="5dp"
+        />
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        >
+        <include
+            layout="@layout/toolbar_menu"
+            app:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.AppBarLayout>
+
+</RelativeLayout>

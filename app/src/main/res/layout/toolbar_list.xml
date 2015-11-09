@@ -1,0 +1,33 @@
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fontify="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/logo"
+            />
+
+        <com.cumana.fonts.TextView
+            style="@style/labelButtons"
+            android:textSize="18dp"
+            android:id="@+id/title"
+            android:visibility="gone"
+            android:layout_toRightOf="@id/logo"
+            fontify:font="@string/RobotoRegular"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>
