@@ -72,7 +72,7 @@ public class fragment_persons extends Fragment {
                 }
 
                 List<table_img> pmg = sqlite.getPersons(persons.getJSONObject(i).getString("_id"));
-                items.add(new persons(persons.getJSONObject(i).getString("_id"), persons.getJSONObject(i).getString("name"), pmg.get(0).getImg(), persons.getJSONObject(i).getString("profession"), persons.getJSONObject(i).getString("description"), persons.getJSONObject(i).getString("resume"),position));
+                items.add(new persons(persons.getJSONObject(i).getString("_id"), persons.getJSONObject(i).getString("name"), pmg.get(0).getImg(), persons.getJSONObject(i).getString("profession"), persons.getJSONObject(i).getString("description"),persons.getJSONObject(i).getString("description"),position));
             }
 
             adapter = new adapter_persons(items);

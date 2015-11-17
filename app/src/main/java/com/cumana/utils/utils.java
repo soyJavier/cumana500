@@ -5,7 +5,9 @@ package com.cumana.utils;
  */
 public class utils {
 
-    public String url = "http://107.170.117.16:3000/api/";
+    //public String url = "http://107.170.117.16:3000/api/";
+    public String url = "http://devsproductions.hol.es/";
 
     public utils(){}
+
 }

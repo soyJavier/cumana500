@@ -1,5 +1,7 @@
 package com.cumana.struct;
 
+import android.text.Html;
+
 /**
  * Created by Javier on 23-10-2015.
  */
@@ -72,7 +74,14 @@ public class persons {
     }
 
     public String getResumen() {
-        return resumen;
+
+        resumen = Html.fromHtml(resumen)+"";
+
+        if(resumen.length()>=90){
+            return resumen.substring(0,90)+"...";
+        }else {
+            return resumen;
+        }
     }
 
     public int getPosition() {

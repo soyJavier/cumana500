@@ -6,74 +6,87 @@
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:id="@+id/image"
-            android:src="@mipmap/test"
+            android:transitionName="tImage"
+            android:src="@mipmap/bg_load"
             />
 
+        <LinearLayout
+            android:id="@+id/mainHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_below="@+id/image"
             >
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:orientation="vertical"
                 >
 
-                <com.cumana.fonts.TextView
-                    android:id="@+id/name"
-                    style="@style/labelList"
-                    android:text="Gobernación del Estado Sucre"
-                    android:layout_marginRight="30dp"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    fontify:font="@string/RobotoRegular"
-                    />
-
-                <com.cumana.fonts.TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/subName"
-                    style="@style/labelList"
-                    android:text="Gobernador: Lic. Luis Acuña"
-                    android:textSize="14dp"
-                    android:layout_below="@id/name"
-                    fontify:font="@string/RobotoRegular"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_share"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    />
+                    android:padding="10dp"
+                    >
 
-                <com.cumana.fonts.TextView
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/description"
-                    style="@style/labelList"
-                    android:textSize="14dp"
-                    android:layout_below="@id/subName"
-                    fontify:font="@string/RobotoLight"
-                    />
+                    <com.cumana.fonts.TextView
+                        android:id="@+id/name"
+                        android:transitionName="tNameHolder"
+                        style="@style/labelList"
+                        android:text="Gobernación del Estado Sucre"
+                        android:layout_marginRight="30dp"
+                        android:textColor="#000000"
+                        android:textSize="16dp"
+                        fontify:font="@string/RobotoRegular"
+                        />
 
-            </RelativeLayout>
+                    <com.cumana.fonts.TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/subName"
+                        style="@style/labelList"
+                        android:text="Gobernador: Lic. Luis Acuña"
+                        android:textSize="14dp"
+                        android:layout_below="@id/name"
+                        fontify:font="@string/RobotoRegular"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_share"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:transitionName="tImage"
+                        />
+
+                    <com.cumana.fonts.TextView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/description"
+                        style="@style/labelList"
+                        android:textSize="14dp"
+                        android:layout_below="@id/subName"
+                        fontify:font="@string/RobotoLight" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

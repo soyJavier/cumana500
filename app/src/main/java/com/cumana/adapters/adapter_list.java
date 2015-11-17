@@ -1,6 +1,10 @@
 package com.cumana.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +13,10 @@ import android.widget.ImageView;
 import com.cumana.cumana500.R;
 import com.cumana.fonts.TextView;
 import com.cumana.struct.places;
+import com.cumana.utils.PlaceData;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -56,33 +58,51 @@ public class adapter_list extends RecyclerView.Adapter<adapter_list.AnimeViewHol
     }
 
     @Override
-    public void onBindViewHolder(AnimeViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final AnimeViewHolder viewHolder, int i) {
 
-        Picasso.with(items.get(i).getCtx()).load(items.get(i).getUrl()).into(viewHolder.image);
+        final int p = i;
+
+
+        viewHolder.image.setImageResource(R.mipmap.bg_load);
+
+        Picasso.with(items.get(i).getCtx()).load(items.get(i).getUrl()).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                viewHolder.image.setImageBitmap(bitmap);
+                new PlaceData().listPlaces.get(p).setBitmap(bitmap);
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+                Log.w("error", "error " + errorDrawable);
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
 
         viewHolder.name.setText(items.get(i).getName());
 
         if(items.get(i).getDescription().length()>0){
 
-            if(items.get(i).getDescription().length()>=90){
-                viewHolder.description.setText(items.get(i).getDescription().substring(0,90)+"...");
+            String description = Html.fromHtml(items.get(i).getDescription()).toString();
+
+            if(description.length()>=90){
+                viewHolder.description.setText(description.substring(0, 90)+"...");
             }else{
-                viewHolder.description.setText(items.get(i).getDescription());
+                viewHolder.description.setText(description);
             }
         }else{
             viewHolder.description.setVisibility(View.GONE);
         }
 
+        ((BitmapDrawable)viewHolder.image.getDrawable()).getBitmap();
         if(items.get(i).getAutority()){
 
             if(items.get(i).getSubName() != null) {
-                try {
-                    JSONObject autority = new JSONObject(items.get(i).getSubName());
-
-                    viewHolder.subName.setText(autority.getString("appointment") + " " + autority.getString("title") + " " + autority.getString("name") + " " + autority.getString("last"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                viewHolder.subName.setText(items.get(i).getSubName());
             }
         }else{
             viewHolder.subName.setText(items.get(i).getSubName());

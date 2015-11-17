@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,12 +36,15 @@ import com.cumana.developers.developers;
 import com.cumana.fonts.TextView;
 import com.cumana.history.history;
 import com.cumana.list.list;
+import com.cumana.list.search;
 import com.cumana.sqlite.SQLiteHelper;
 import com.cumana.tables.clima;
 import com.cumana.utils.Connectivity;
 import com.cumana.utils.utils;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -50,7 +55,7 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
     ImageView fondo,logo;
     Toolbar toolbar;
     ActionBar actionBar;
-    LinearLayout institucion,historia,turismo,descargas;
+    LinearLayout institucion,historia,turismo,mobility;
     SQLiteHelper sqlite;
     SharedPreferences optionsMenu;
 
@@ -76,7 +81,7 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
         institucion = (LinearLayout) findViewById(R.id.institucion);
         historia = (LinearLayout) findViewById(R.id.historia);
         turismo = (LinearLayout) findViewById(R.id.turismo);
-        descargas = (LinearLayout) findViewById(R.id.descargas);
+        mobility = (LinearLayout) findViewById(R.id.mobility);
 
         BitmapDrawable drawable = (BitmapDrawable) fondo.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
@@ -109,6 +114,7 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
         institucion.setOnClickListener(this);
         turismo.setOnClickListener(this);
         historia.setOnClickListener(this);
+        mobility.setOnClickListener(this);
 
         if(!optionsMenu.getBoolean("wheather", false)){
 
@@ -129,7 +135,7 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
 
     public void donwloadInfo(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = new utils().url+"wheather/cum";
+        String url = new utils().url+"wheather/"+sqlite.getCiudad().get(0).get_id();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -138,9 +144,9 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
 
                         try {
 
-                            clima = new JSONArray(response);
+                            //clima = new JSONArray(response);
                             Log.w("response",response);
-                            process(clima);
+                            process(new JSONObject(response));
                         }catch(JSONException e){
                             e.printStackTrace();
                         }
@@ -152,12 +158,26 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
                 Log.w("console", "" + error);
             }
         });
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                16000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         queue.add(stringRequest);
     }
 
-    private void process(JSONArray clima) {
-        //Insertamos datos del clima en la bd
-        sqlite.add(5,new clima(clima.toString()).setClima());
+    private void process(JSONObject response) {
+
+        try {
+            if(response.getInt("status") == 1) {
+                //Insertamos datos del clima en la bd
+                clima = new JSONArray(response.getString("wheather"));
+                sqlite.add(5, new clima(clima.toString()).setClima());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         setWheather();
     }
@@ -210,6 +230,7 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
                 startActivity(new Intent().setClass(getApplicationContext(),developers.class));
                 break;
             case R.id.search:{
+                startActivity(new Intent().setClass(getApplicationContext(),search.class));
                 return true;
             }
 
@@ -280,19 +301,22 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
 
         switch (v.getId()){
             case R.id.institucion:
-                action.putExtra("category", "institucion");
+                action.putExtra("category",1);
                 action.putExtra("title","Instituciones");
                 action.setClass(this, list.class);
                 break;
             case R.id.turismo:
-                action.putExtra("category", "turismo");
+                action.putExtra("category",3);
                 action.putExtra("title","Turismo");
                 action.setClass(this, list.class);
                 break;
             case R.id.historia:
                 action.setClass(this, history.class);
                 break;
-            case R.id.descargas:
+            case R.id.mobility:
+                action.putExtra("category",2);
+                action.putExtra("title","Movilidad");
+                action.setClass(this, list.class);
                 break;
         }
 

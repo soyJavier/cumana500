@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fontify="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    >
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingTop="9dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="9dp"
+        >
+
+        <com.cumana.fonts.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42dp"
+            android:textSize="16dp"
+            android:id="@+id/options"
+            android:textColor="#FF5A5A5A"
+            android:paddingTop="5dp"
+            fontify:font="@string/RobotoRegular"
+            />
+
+    </LinearLayout>
+
+    <com.cumana.fonts.CheckBox
+        android:layout_height="wrap_content"
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_marginRight="15dp"
+        >
+
+    </com.cumana.fonts.CheckBox>
+
+</RelativeLayout>

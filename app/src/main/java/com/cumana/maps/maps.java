@@ -10,13 +10,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.cumana.cumana500.R;
+import com.cumana.fonts.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class maps extends AppCompatActivity {
 
     ActionBar actionBar;
     Toolbar toolbar;
+
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +42,25 @@ public class maps extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
+
+        title = (TextView) toolbar.findViewById(R.id.title);
 
         Bundle params = new Bundle();
 
         if(getIntent().getExtras().containsKey("single")){
-            Log.w("single", "single");
+            params.putBoolean("single", true);
+            params.putString("details", "" + getIntent().getExtras().getString("details"));
+
+            try {
+                JSONObject place = new JSONObject(getIntent().getExtras().getString("details"));
+                title.setText(place.getString("name"));
+                title.setVisibility(View.VISIBLE);
+                actionBar.setTitle(place.getString("name"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }else{
             params.putString("json","" +getIntent().getExtras().getString("json"));
         }
@@ -51,32 +73,6 @@ public class maps extends AppCompatActivity {
         mp.setArguments(params);
         fragmentTransaction.replace(R.id.map,mp);
         fragmentTransaction.commit();
-
-        /*mapa = ((MapFragment) getFragmentManager().findFragmentById(R.id.maps)).getMap();
-
-        if(getIntent().getExtras().containsKey("single")){
-            Log.w("single","single");
-        }else{
-            try {
-                points = new JSONArray(getIntent().getExtras().getString("json"));
-
-
-                for (int i=0;i<points.length();i++){
-                    builder.include(new LatLng(points.getJSONObject(i).getDouble("lat"), points.getJSONObject(i).getDouble("lon")));
-                    MarkerOptions m = new MarkerOptions();
-                    m.position(new LatLng(points.getJSONObject(i).getDouble("lat"), points.getJSONObject(i).getDouble("lon")));
-
-                    mapa.addMarker(m);
-                }
-
-
-                //mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), displaymetrics.widthPixels, displaymetrics.heightPixels, (int) (Math.min(100,100) * 0.1)));
-
-                Log.w("json",points.toString());
-            }catch (JSONException e){
-                e.printStackTrace();
-            }
-        }*/
     }
 
     @Override
@@ -86,8 +82,9 @@ public class maps extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.icon_menu, menu);
+        //MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.menu.icon_menu, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 

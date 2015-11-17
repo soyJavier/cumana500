@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cumana.adapters.CheakLinearlayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fontify="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selected_subcategorias"
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/ctn"
+        >
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/categories"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical|left"
+            />
+
+        <com.cumana.fonts.TextView
+            style="@style/titulo_detalles"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:layout_weight="8"
+            fontify:font="@string/RobotoRegular"
+            />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/colapse"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_arrow"
+            android:rotationX="180"
+            android:layout_gravity="left|center_vertical"
+            android:paddingRight="16dp"
+            />
+
+
+    </LinearLayout>
+
+</com.cumana.adapters.CheakLinearlayout>

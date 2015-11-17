@@ -2,6 +2,7 @@ package com.cumana.struct;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 
 /**
  * Created by Javier on 21-10-2015.
@@ -15,6 +16,7 @@ public class places {
     private String url;
     private Boolean autority;
     private Context ctx;
+    private Bitmap bitmap;
 
     public places(String _id,String name,String subName,String description,String url,Boolean autority,Context ctx){
         this.url = url;
@@ -24,6 +26,10 @@ public class places {
         this.description = description;
         this.autority = autority;
         this.ctx = ctx;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public String get_id() {
@@ -76,6 +82,10 @@ public class places {
 
     public void setCtx(Context ctx) {
         this.ctx = ctx;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
     public Context getCtx() {

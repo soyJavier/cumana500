@@ -45,9 +45,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_CATEGORY_IMG = "categorias_img";
 
+    private static final String TABLE_SUBCATEGORY_IMG = "subcategorias_img";
+
     private static final String TABLE_CLIMA = "clima";
 
-    public static String[] TABLA_BD = {"ciudad","ciudad_img","personajes","categorias","categorias_img","clima"};
+    public static String[] TABLA_BD = {"ciudad","ciudad_img","personajes","categorias","categorias_img","clima","subcategorias_img"};
 
     final public static synchronized SQLiteHelper getHelper(Context ctx){
 
@@ -81,6 +83,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS "+TABLE_CATEGORY_IMG+" (_id TEXT,image TEXT)";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS "+TABLE_SUBCATEGORY_IMG+" (_id TEXT,image TEXT)";
         db.execSQL(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS "+TABLE_CLIMA+" ("+TABLE_CLIMA+" TEXT)";
@@ -189,5 +194,53 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
 
         return queryClima;
+    }
+
+
+    public List<table_img> getcategoryImg(int table,String id){
+
+        List<table_img> querySubcat = new ArrayList<table_img>();
+
+        String query = "SELECT * FROM " + TABLA_BD[table]+" WHERE _id = '"+id+"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        table_img cl = null;
+        if (cursor.moveToFirst()) {
+            do {
+                cl = new table_img();
+                cl.set_id(cursor.getString(0));
+                cl.setImg(cursor.getString(1));
+                querySubcat.add(cl);
+
+            } while (cursor.moveToNext());
+        }
+
+        return querySubcat;
+    }
+
+
+    public List<table_img> getcategoryImg(int table){
+
+        List<table_img> querySubcat = new ArrayList<table_img>();
+
+        String query = "SELECT * FROM " + TABLA_BD[table]+"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        table_img cl = null;
+        if (cursor.moveToFirst()) {
+            do {
+                cl = new table_img();
+                cl.set_id(cursor.getString(0));
+                cl.setImg(cursor.getString(1));
+                querySubcat.add(cl);
+
+            } while (cursor.moveToNext());
+        }
+
+        return querySubcat;
     }
 }
