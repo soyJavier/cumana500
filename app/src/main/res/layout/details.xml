@@ -137,6 +137,58 @@
                 fontify:font="@string/RobotoRegular"
                 />
 
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ContentContac"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dip"
+                    android:background="#dbdbdb"
+                    android:layout_margin="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginLeft="7dp"
+                    />
+
+
+                <com.cumana.fonts.TextView
+                    style="@style/labelSubtitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contacto"
+                    android:textColor="#626262"
+                    android:textSize="16dp"
+                    android:layout_margin="0dp"
+                    android:gravity="left"
+                    android:textStyle="bold"
+                    fontify:font="@string/RobotoRegular"
+                    android:padding="7dp"
+                    />
+
+                <com.cumana.fonts.TextView
+                    style="@style/labelSubtitle"
+                    android:id="@+id/contac"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#626262"
+                    android:textSize="16dp"
+                    android:gravity="left"
+                    android:layout_margin="7dp"
+                    fontify:font="@string/RobotoRegular"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

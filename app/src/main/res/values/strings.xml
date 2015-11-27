@@ -58,6 +58,12 @@
         <string name="monumento_indio">Monumento “El Indio”</string>
         <!--3.4 Iglesia “Santa Inés”-->
         <string name="iglesia_ines">Iglesia “Santa Inés”</string>
+        <!--3.5 Calle Iglesia Santa Ines -->
+        <string name="calle_iglesia_ines">Calle Iglesia Santa Ines</string>
+        <!--3.6 Cumanagoto -->
+        <string name="cumanagoto">Cumanagoto</string>
+        <!--3.7 Calle El Alacran -->
+        <string name="calle_alacran">Calle el Alacran</string>
     <!-- END title splash -->
 
     <!-- 4.Text menu-->

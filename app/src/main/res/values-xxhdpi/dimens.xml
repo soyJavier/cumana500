@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Menu -->
+    <dimen name="logo_menu_width">150dp</dimen>
+    <dimen name="logo_menu_height">100dp</dimen>
+    <dimen name="backgroundButtons">105dp</dimen>
+    <dimen name="buttonsIcon">45dp</dimen>
+    <dimen name="labelButtons">14dp</dimen>
+    <dimen name="buttonsMargin">15dp</dimen>
+    <dimen name="titleMenu">20dp</dimen>
+    <dimen name="climaIcon">25dp</dimen>
+
+
+    <!-- Developers -->
+    <dimen name="developers">60dp</dimen>
+    <dimen name="developers_text">12dp</dimen>
+    <dimen name="developers_redes">90dp</dimen>
+</resources>

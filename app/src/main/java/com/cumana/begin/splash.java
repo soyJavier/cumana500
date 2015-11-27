@@ -3,11 +3,13 @@ package com.cumana.begin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -16,7 +18,6 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ViewSwitcher;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,9 +29,13 @@ import com.android.volley.toolbox.Volley;
 import com.cumana.bitmap.converteBitmap;
 import com.cumana.cumana500.R;
 import com.cumana.fonts.TextView;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.cumana.menu.menu;
 import com.cumana.sqlite.SQLiteHelper;
+import com.cumana.struct.temp;
 import com.cumana.tables.ciudad;
 import com.cumana.tables.clima;
 import com.cumana.tables.table_img;
@@ -49,11 +54,13 @@ public class splash extends AppCompatActivity {
 
     private ImageSwitcher fons_slider;
     private TextView place;
-    private ArrayList<Integer> Resource = new ArrayList<Integer>(){{add(R.mipmap.intro_1);add(R.mipmap.intro_2);add(R.mipmap.intro_3);}};
-    private ArrayList<Integer> ResourceSite = new ArrayList<Integer>(){{add(R.string.castillo_san_antonio);add(R.string.monumento_indio);add(R.string.iglesia_ines);}};
+    private ArrayList<Integer> Resource = new ArrayList<Integer>(){{add(R.mipmap.intro_1);add(R.mipmap.intro_2);add(R.mipmap.intro_3);add(R.mipmap.intro_4);add(R.mipmap.intro_5);add(R.mipmap.intro_6);add(R.mipmap.intro_7);add(R.mipmap.intro_8);}};
+    private ArrayList<Integer> ResourceSite = new ArrayList<Integer>(){{add(R.string.castillo_san_antonio);add(R.string.monumento_indio);add(R.string.iglesia_ines);add(R.string.calle_iglesia_ines);add(R.string.cumanagoto);add(R.string.castillo_san_antonio);add(R.string.iglesia_ines);add(R.string.calle_alacran);}};
 
     private ProgressBar loading;
     private TextView percentage;
+    List<temp> temp = new ArrayList<temp>();
+    List<Integer> listaNumero = new ArrayList<>();
 
     JSONObject json;
 
@@ -76,6 +83,7 @@ public class splash extends AppCompatActivity {
         optionsMenu = getSharedPreferences(splash.class.getSimpleName(), Context.MODE_PRIVATE);
         optionsMenu.getBoolean("active", false);
         optionsMenu.getBoolean("wheather", false);
+        optionsMenu.getString("versionApps", "1.2");
 
         fons_slider = (ImageSwitcher) findViewById(R.id.fonds_search);
         place = (TextView) findViewById(R.id.place);
@@ -95,11 +103,117 @@ public class splash extends AppCompatActivity {
         fons_slider.setImageResource(Resource.get(0));
         place.setText(ResourceSite.get(0));
 
+
+        for(int i = 0; i < 4;i++){
+            Log.w("generar",generar()+"");
+        }
+
         if(!optionsMenu.getBoolean("active",false)){
-            donwloadInfo();
+
+            temp =  sqlite.temps();
+
+            if(temp.size() == 0) {
+
+                String vers = "";
+                try {
+                    vers = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(),0).versionName;
+                } catch (PackageManager.NameNotFoundException e) {
+                    vers = "1.3";
+                }
+
+                if(optionsMenu.getString("versionApps","1.2").equals("1.2")){
+                    sqlite.removeAllBd();
+                    SharedPreferences.Editor editor = optionsMenu.edit();
+                    editor.putString("versionApps",vers);
+                    editor.commit();
+                    donwloadInfo();
+                }else{
+                    TIME_OUT = 100;
+                    new moveProgress().execute();
+                }
+
+            }else{
+                donwloadInfoTemp();
+            }
         }else{
             TIME_OUT = 100;
             new moveProgress().execute();
+        }
+
+        File file = new File(Environment.getExternalStorageDirectory(),"Cumana500");
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                Log.w("TravellerLog :: ","Problem creating Image folder");
+            }else{
+                Log.w("CRRETA","CREATE");
+            }
+        }
+        file = new File(Environment.getExternalStorageDirectory(), "Cumana500/save");
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                Log.w("TravellerLog :: ","Problem creating Image folder");
+            }else{
+                Log.w("CRRETA","CREATE");
+            }
+        }
+
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        switch(metrics.densityDpi){
+            case DisplayMetrics.DENSITY_LOW:
+                Log.w("n","DENSITY_LOW");
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                Log.w("n","DENSITY_MEDIUM");
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                Log.w("n","DENSITY_HIGH");
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                Log.w("n","DENSITY_XHIGH");
+                break;
+
+            case DisplayMetrics.DENSITY_XXHIGH:
+                Log.w("n","DENSITY_XXHIGH");
+                break;
+
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                Log.w("n","DENSITY_XXXHIGH");
+                break;
+        }
+    }
+
+
+    public int generar(){
+        if(listaNumero.size() < (7 - 0) +1){
+            //Aun no se han generado todos los numeros
+            int numero = numeroAleatorio();//genero un numero
+            if(listaNumero.isEmpty()){//si la lista esta vacia
+                listaNumero.add(numero);
+                return numero;
+            }else{//si no esta vacia
+                if(listaNumero.contains(numero)){//Si el numero que generé esta contenido en la lista
+                    return generar();//recursivamente lo mando a generar otra vez
+                }else{//Si no esta contenido en la lista
+                    listaNumero.add(numero);
+                    return numero;
+                }
+            }
+        }else{// ya se generaron todos los numeros
+            return -1;
+        }
+    }
+
+    private int numeroAleatorio(){
+        return (int)(Math.random()*(7-0+1)+0);
+    }
+
+    public void donwloadInfoTemp(){
+
+        for(int i=0;i<temp.size();i++){
+            total++;
+            donwloadImg(temp.get(i).getTable(),temp.get(i).getUrl(),temp.get(i).get_id(),temp.get(i).getType());
         }
     }
 
@@ -125,6 +239,7 @@ public class splash extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.w("console", "" + error);
+                donwloadInfo();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -166,6 +281,7 @@ public class splash extends AppCompatActivity {
             for(int i=0;i<CityPersons.length();i++){
                 total++;
                 donwloadImg(2,CityPersons.getJSONObject(i).getString("photo"),CityPersons.getJSONObject(i).getString("_id"),null);
+                sqlite.add(7,new temp(CityPersons.getJSONObject(i).getString("_id"),2,CityPersons.getJSONObject(i).getString("photo"),null).setInfo());
             }
 
             //descarga de las imagenes de la multimedia
@@ -173,6 +289,7 @@ public class splash extends AppCompatActivity {
                 if(!CityGalery.getJSONObject(i).getString("type").equals("video")) {
                     total++;
                     donwloadImg(1,CityGalery.getJSONObject(i).getString("photo"), CityGalery.getJSONObject(i).getString("photo"), CityGalery.getJSONObject(i).getString("type"));
+                    sqlite.add(7,new temp(CityGalery.getJSONObject(i).getString("photo"),1,CityGalery.getJSONObject(i).getString("photo"),CityGalery.getJSONObject(i).getString("type")).setInfo());
                 }
             }
 
@@ -180,11 +297,13 @@ public class splash extends AppCompatActivity {
             for(int i=0;i<JsonCategory.length();i++){
                 total++;
                 donwloadImg(4,JsonCategory.getJSONObject(i).getString("icon"),JsonCategory.getJSONObject(i).getString("id_category"),null);
+                sqlite.add(7,new temp(JsonCategory.getJSONObject(i).getString("id_category"),4,JsonCategory.getJSONObject(i).getString("icon"),null).setInfo());
 
                 JSONArray subcategory = JsonCategory.getJSONObject(i).getJSONArray("subcategory");
                 for(int j=0;j<subcategory.length();j++){
                     total++;
                     donwloadImg(6,subcategory.getJSONObject(j).getString("icon"),subcategory.getJSONObject(j).getString("id_subcategory"),null);
+                    sqlite.add(7,new temp(subcategory.getJSONObject(j).getString("id_subcategory"),6,subcategory.getJSONObject(j).getString("icon"),null).setInfo());
                 }
             }
 
@@ -223,8 +342,12 @@ public class splash extends AppCompatActivity {
 
                         total--;
 
+                        long k = sqlite.remove(7,"_id",""+_id);
+
+                        Log.w("remove",k+" - "+url);
+
                         Log.w("total",""+total);
-                        if(total == 1){
+                        if(total == 0 && sqlite.temps().size() == 0){
                             new moveProgress().execute();
 
                             SharedPreferences.Editor editor = optionsMenu.edit();
@@ -275,27 +398,44 @@ public class splash extends AppCompatActivity {
                 loading.setProgress(loading.getProgress()+1);
 
                 percentage.setText(""+loading.getProgress()+"%");
-                if(loading.getProgress() == 30) {
+                if(loading.getProgress() == 25) {
                     Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
                     Animation fadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
                     fons_slider.setInAnimation(fadeIn);
                     fons_slider.setOutAnimation(fadeOut);
-                    fons_slider.setImageResource(Resource.get(1));
-                    place.setText(ResourceSite.get(1));
-
+                    fons_slider.setImageResource(Resource.get(listaNumero.get(0)));
+                    place.setText(ResourceSite.get(listaNumero.get(0)));
                 }else{
-                    if(loading.getProgress() == 60){
+                    if(loading.getProgress() == 55){
                         Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
                         Animation fadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
                         fons_slider.setInAnimation(fadeIn);
                         fons_slider.setOutAnimation(fadeOut);
-                        fons_slider.setImageResource(Resource.get(2));
-                        place.setText(ResourceSite.get(2));
+                        fons_slider.setImageResource(Resource.get(listaNumero.get(1)));
+                        place.setText(ResourceSite.get(listaNumero.get(1)));
+                    }else{
+                        if(loading.getProgress() == 70){
+                            Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+                            Animation fadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
+                            fons_slider.setInAnimation(fadeIn);
+                            fons_slider.setOutAnimation(fadeOut);
+                            fons_slider.setImageResource(Resource.get(listaNumero.get(2)));
+                            place.setText(ResourceSite.get(listaNumero.get(2)));
+                        }else{
+                            if(loading.getProgress() == 90){
+                                Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+                                Animation fadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
+                                fons_slider.setInAnimation(fadeIn);
+                                fons_slider.setOutAnimation(fadeOut);
+                                fons_slider.setImageResource(Resource.get(listaNumero.get(3)));
+                                place.setText(ResourceSite.get(listaNumero.get(3)));
+                            }
+                        }
                     }
                 }
                 new moveProgress().execute();
             }else{
-                startActivity(new Intent().setClass(getApplicationContext(),menu.class));
+                startActivity(new Intent().setClass(getApplicationContext(), menu.class));
                 finish();
             }
             super.onPostExecute(aVoid);

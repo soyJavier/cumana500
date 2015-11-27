@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -13,13 +14,23 @@ import android.support.v8.renderscript.Allocation;
 import android.support.v8.renderscript.Element;
 import android.support.v8.renderscript.RenderScript;
 import android.support.v8.renderscript.ScriptIntrinsicBlur;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.cumana.adapters.PagerAdaptersHistory;
+import com.cumana.bitmap.converteBitmap;
 import com.cumana.cumana500.R;
 import com.cumana.fonts.TextView;
+import com.cumana.sqlite.SQLiteHelper;
+import com.cumana.tables.table_img;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Javier on 23-10-2015.
@@ -29,6 +40,9 @@ public class history extends AppCompatActivity {
     Toolbar toolbar;
     ActionBar actionBar;
     ImageView fondo;
+    static List<Bitmap> listBitmap = new ArrayList<>();
+    List<table_img> queryImg = new ArrayList<>();
+    SQLiteHelper sqlite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +50,16 @@ public class history extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
 
+        sqlite = SQLiteHelper.getHelper(this);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        queryImg = sqlite.getcategoryImg(1);
+
+
+        for(int i=0;i<queryImg.size();i++){
+            listBitmap.add(new converteBitmap().StringToBitMap(queryImg.get(i).getImg()));
+        }
 
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
@@ -63,7 +86,6 @@ public class history extends AppCompatActivity {
         Bitmap bitmap = drawable.getBitmap();
         Bitmap blurred = blurRenderScript(bitmap,25);
         fondo.setImageBitmap(blurred);
-
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdaptersHistory adapter = new PagerAdaptersHistory(getSupportFragmentManager(), tabs.getTabCount());

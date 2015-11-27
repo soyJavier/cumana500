@@ -1,21 +1,26 @@
 package com.cumana.history;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.support.v8.renderscript.Allocation;
 import android.support.v8.renderscript.Element;
 import android.support.v8.renderscript.RenderScript;
 import android.support.v8.renderscript.ScriptIntrinsicBlur;
 import android.text.Html;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.cumana.bitmap.converteBitmap;
 import com.cumana.cumana500.R;
+import com.cumana.developers.developers;
 import com.cumana.fonts.TextView;
+import com.cumana.list.search;
 import com.cumana.sqlite.SQLiteHelper;
 import com.cumana.tables.ciudad;
 
@@ -47,7 +52,10 @@ public class details_persons extends AppCompatActivity{
         history = (TextView) findViewById(R.id.historia);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapser);
+        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapser);
+
+
+
 
         sqlite = SQLiteHelper.getHelper(this);
 
@@ -65,6 +73,15 @@ public class details_persons extends AppCompatActivity{
             collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBarPlus1);
             collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBarPlus1);
 
+            Palette.from(new converteBitmap().StringToBitMap(sqlite.getPersons(persons.getJSONObject(Integer.parseInt("" + getIntent().getExtras().getInt("details_id"))).getString("_id")).get(0).getImg())).maximumColorCount(16).generate(new Palette.PaletteAsyncListener() {
+                @Override
+                public void onGenerated(Palette palette) {
+                    int bgColor = palette.getMutedColor(getApplicationContext().getResources().getColor(android.R.color.black));
+                    collapsingToolbar.setContentScrimColor(bgColor);
+                }
+
+            });
+
             BitmapDrawable drawable = (BitmapDrawable) fondo.getDrawable();
             Bitmap bitmap = drawable.getBitmap();
             Bitmap blurred = blurRenderScript(bitmap, 25);
@@ -74,7 +91,6 @@ public class details_persons extends AppCompatActivity{
         }
 
     }
-
 
     private Bitmap blurRenderScript(Bitmap smallBitmap, int radius) {
 
@@ -121,5 +137,20 @@ public class details_persons extends AppCompatActivity{
         result.setPixels(pixels, 0, result.getWidth(), 0, 0, result.getWidth(), result.getHeight());
         return result;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

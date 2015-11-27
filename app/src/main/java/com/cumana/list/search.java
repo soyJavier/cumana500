@@ -84,8 +84,6 @@ public class search extends AppCompatActivity{
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-
-
         setSupportActionBar(toolbar);
 
         actionBar = getSupportActionBar();
@@ -227,19 +225,37 @@ public class search extends AppCompatActivity{
 
         String url = new utils().url+"places/search";
 
-        JsonArrayRequest req = new JsonArrayRequest(url,params,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest req = new JsonObjectRequest(url,params,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
 
                         Log.w("url", response.toString());
 
-                        if(dialogo.isShowing()){
-                            dialogo.dismiss();
-                            Intent move = new Intent();
-                            move.setClass(getApplicationContext(),list.class);
-                            move.putExtra("json",response.toString());
-                            startActivity(move);
+                        try {
+                            if(response.getInt("status") == 1){
+
+                                if (dialogo.isShowing()) {
+                                    dialogo.dismiss();
+                                    Intent move = new Intent();
+                                    move.setClass(getApplicationContext(), list.class);
+                                    move.putExtra("json", response.getJSONArray("data").toString());
+                                    startActivity(move);
+                                }
+                            }else{
+                                if (dialogo.isShowing()) {
+                                    dialogo.dismiss();
+                                    dialogo = new MaterialDialog.Builder(getApplication())
+                                            .title("Ocurrio un error")
+                                            .content("Por favor intenta de nuevo")
+                                            .theme(Theme.LIGHT)
+                                            .cancelable(true)
+                                            .positiveText("Aceptar")
+                                            .show();
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {

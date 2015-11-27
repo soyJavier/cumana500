@@ -27,17 +27,14 @@
         android:orientation="vertical"
         android:gravity="center"
         android:id="@+id/menu"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:paddingTop="10dp"
+        android:layout_centerInParent="true"
         >
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/logo_menu_width"
+            android:layout_height="@dimen/logo_menu_height"
             android:scaleType="centerCrop"
             android:src="@mipmap/logo"
-            android:layout_margin="5dp"
             />
 
         <com.cumana.fonts.TextView
@@ -45,7 +42,7 @@
             style="@style/labelSubtitle"
             android:text="@string/primogenita"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:textSize="@dimen/titleMenu"
             fontify:font="@string/RobotoThin"
             />
 
@@ -73,8 +70,8 @@
                         >
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="@dimen/buttonsIcon"
+                            android:layout_height="@dimen/buttonsIcon"
                             android:src="@mipmap/ic_instituciones"
                             />
 
@@ -92,8 +89,8 @@
                         >
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_width="@dimen/buttonsIcon"
+                            android:layout_height="@dimen/buttonsIcon"
                             android:src="@mipmap/ic_history"
                             />
 
@@ -131,8 +128,8 @@
                         >
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="@dimen/buttonsIcon"
+                            android:layout_height="@dimen/buttonsIcon"
                             android:src="@mipmap/ic_turismo"
                             />
 
@@ -150,8 +147,8 @@
                         >
 
                         <ImageView
-                            android:layout_width="55dp"
-                            android:layout_height="50dp"
+                            android:layout_width="@dimen/buttonsIcon"
+                            android:layout_height="@dimen/buttonsIcon"
                             android:src="@mipmap/ic_mobility"
                             />
 
@@ -203,7 +200,7 @@
                     <com.cumana.fonts.TextView
                         android:textColor="#FFFFFF"
                         android:gravity="center"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/climaIcon"
                         android:id="@+id/today"
                         android:layout_weight="2"
                         android:layout_width="0dp"
@@ -217,7 +214,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="2"
                         android:layout_width="0dp"
-                        android:layout_height="25dp" />
+                        android:layout_height="@dimen/climaIcon" />
 
                     <ImageView
                         android:src="@mipmap/lluvia_noche"
@@ -226,7 +223,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="2"
                         android:layout_width="0dp"
-                        android:layout_height="25dp" />
+                        android:layout_height="@dimen/climaIcon" />
 
                     <ImageView
                         android:src="@mipmap/soleado"
@@ -235,7 +232,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="2"
                         android:layout_width="0dp"
-                        android:layout_height="25dp" />
+                        android:layout_height="@dimen/climaIcon" />
 
 
                     <ImageView
@@ -245,7 +242,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="2"
                         android:layout_width="0dp"
-                        android:layout_height="25dp" />
+                        android:layout_height="@dimen/climaIcon" />
             </LinearLayout>
 
             <LinearLayout

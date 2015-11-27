@@ -69,7 +69,9 @@ public class adapter_list extends RecyclerView.Adapter<adapter_list.AnimeViewHol
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 viewHolder.image.setImageBitmap(bitmap);
-                new PlaceData().listPlaces.get(p).setBitmap(bitmap);
+                if(new PlaceData().listPlaces.size()>0) {
+                    new PlaceData().listPlaces.get(p).setBitmap(bitmap);
+                }
             }
 
             @Override
@@ -86,6 +88,8 @@ public class adapter_list extends RecyclerView.Adapter<adapter_list.AnimeViewHol
         viewHolder.name.setText(items.get(i).getName());
 
         if(items.get(i).getDescription().length()>0){
+
+            viewHolder.description.setVisibility(View.VISIBLE);
 
             String description = Html.fromHtml(items.get(i).getDescription()).toString();
 

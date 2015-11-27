@@ -1,8 +1,10 @@
 package com.cumana.developers;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -26,13 +28,12 @@ import com.github.library.bubbleview.BubbleTextVew;
 /**
  * Created by Javier on 21-10-2015.
  */
-public class developers extends AppCompatActivity {
-
+public class developers extends AppCompatActivity implements View.OnClickListener{
 
     ImageView fondo;
     Toolbar toolbar;
     ActionBar actionBar;
-    BubbleTextVew description_1,description_2,description_3;
+    BubbleTextVew description_1,description_2,description_3,description_4;
     TextView title;
 
     @Override
@@ -48,12 +49,12 @@ public class developers extends AppCompatActivity {
         description_1 = (BubbleTextVew) findViewById(R.id.description_1);
         description_2 = (BubbleTextVew) findViewById(R.id.description_2);
         description_3 = (BubbleTextVew) findViewById(R.id.description_3);
-
+        description_4 = (BubbleTextVew) findViewById(R.id.description_4);
 
         description_1.setText(Html.fromHtml("<b>@01Comandos</b><br>¡Hola! Soy @01Comandos, Diseñador de interfaces humanas y Experiencia de Usuario con más de 3 años de experiencia. <font color='#29ABE2'>#MejorUX #FrontEnd</font>"));
-        description_2.setText(Html.fromHtml("<b>@soyLuishp</b><br>Android Developer desde el principio de los tiempos, además de desarrollador #BackEnd en mis tiempos libres. Master Developer en <font color='#29ABE2'>#BitDayCity #LoveCleanCode</font>"));
-        description_3.setText(Html.fromHtml("<b>@josetorrens</b><br>Especializado en <font color='#29ABE2'>#BackEnd #FrontEnd</font> con más de 4 años de experiencia en desarrollo de proyectos en PHP, JS, JAVA, NodeJs."));
-
+        description_2.setText(Html.fromHtml("<b>@soyLuishp</b><br>Android Developer desde el principio de los tiempos, además de desarrollador #BackEnd. Master Developer en <font color='#29ABE2'>#BitDayCity #LoveCleanCode</font>"));
+        description_3.setText(Html.fromHtml("<b>Jose Torrens</b><br>Especializado en <font color='#29ABE2'>#BackEnd #FrontEnd</font> con más de 4 años de experiencia en desarrollo de proyectos en PHP, JS, JAVA, NodeJs."));
+        description_4.setText(Html.fromHtml("<b>Alejandro Venegas</b><br><font color='#29ABE2'>#Colaborador #FotografoCumanes</font>"));
 
         BitmapDrawable drawable = (BitmapDrawable) fondo.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
@@ -80,6 +81,14 @@ public class developers extends AppCompatActivity {
 
             toolbar.setPadding(0, getStatusBarHeight(), 0, 0);
         }
+
+        findViewById(R.id.l_d_1).setOnClickListener(this);
+        findViewById(R.id.l_d_2).setOnClickListener(this);
+        findViewById(R.id.l_d_3).setOnClickListener(this);
+
+        findViewById(R.id.t_d_1).setOnClickListener(this);
+        findViewById(R.id.t_d_2).setOnClickListener(this);
+        findViewById(R.id.t_d_4).setOnClickListener(this);
 
     }
 
@@ -164,6 +173,30 @@ public class developers extends AppCompatActivity {
             }
         }
 
+
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+
+            case R.id.t_d_1:
+            case R.id.t_d_2:
+                try{
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=" + v.getContentDescription().toString())));
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://twitter.com/#!/" + v.getContentDescription().toString())));
+                }
+                break;
+
+            case R.id.l_d_1:
+            case R.id.l_d_2:
+            case R.id.l_d_3:
+                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(""+v.getContentDescription().toString())));
+                break;
+        }
     }
 }

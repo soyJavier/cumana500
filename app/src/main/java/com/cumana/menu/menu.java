@@ -10,10 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.v8.renderscript.Allocation;
-import android.support.v8.renderscript.Element;
-import android.support.v8.renderscript.RenderScript;
-import android.support.v8.renderscript.ScriptIntrinsicBlur;
+import android.support.v8.renderscript.*;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +19,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,7 +40,6 @@ import com.cumana.utils.utils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -62,8 +57,8 @@ public class menu extends AppCompatActivity implements View.OnClickListener{
     List<Integer> ids = new ArrayList<Integer>(){{add(R.id.today);add(R.id.day_1);add(R.id.day_2);add(R.id.day_3);add(R.id.day_4);}};
     List<Integer> ids_day = new ArrayList<Integer>(){{add(R.id.today);add(R.id.text_day_1);add(R.id.text_day_2);add(R.id.text_day_3);add(R.id.text_day_4);}};
 
-    List<Integer> ResourceClima = new ArrayList<Integer>(){{add(R.mipmap.lluviatruenos);add(R.mipmap.nublado_truenos);add(R.mipmap.nublado_sol);add(R.mipmap.nublado_luna);}};
-    List<String> codeClima = new ArrayList<String>(){{add("4");add("38");add("30");add("29");}};
+    List<Integer> ResourceClima = new ArrayList<Integer>(){{add(R.mipmap.lluviatruenos);add(R.mipmap.nublado_truenos);add(R.mipmap.nublado_sol);add(R.mipmap.nublado_luna);add(R.mipmap.nublado_sol);add(R.mipmap.lluvia_dia);add(R.mipmap.nublado_sol);add(R.mipmap.soleado);add(R.mipmap.nublado_sol);}};
+    List<String> codeClima = new ArrayList<String>(){{add("4");add("38");add("30");add("29");add("27");add("37");add("34");add("32");add("33");}};
 
     //data
     JSONArray clima;

@@ -88,19 +88,19 @@
             <item name="android:layout_width">wrap_content</item>
             <item name="android:layout_height">wrap_content</item>
             <item name="android:gravity">center_horizontal</item>
-            <item name="android:textSize">14dp</item>
+            <item name="android:textSize">@dimen/labelButtons</item>
             <item name="android:textColor">#FFFFFF</item>
             <item name="font">@string/RobotoRegular</item>
         </style>
         <!-- 2.3 Background Buttons -->
         <style name="backgroundButtons">
-            <item name="android:layout_width">105dp</item>
-            <item name="android:layout_height">105dp</item>
-            <item name="android:minWidth">105dp</item>
+            <item name="android:layout_width">@dimen/backgroundButtons</item>
+            <item name="android:layout_height">@dimen/backgroundButtons</item>
+            <item name="android:minWidth">@dimen/backgroundButtons</item>
             <item name="android:gravity">center</item>
             <item name="android:orientation">vertical</item>
             <item name="android:padding">5dp</item>
-            <item name="android:layout_margin">15dp</item>
+            <item name="android:layout_margin">@dimen/buttonsMargin</item>
         </style>
     <!-- END Theme menu-->
 
@@ -126,8 +126,8 @@
             <item name="windowActionBarOverlay">true</item>
 
             <item name="colorControlNormal">@color/colorPrimary</item>
-            <item name="colorControlActivated">@color/colorPrimaryDark</item>
-            <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+            <item name="colorControlActivated">@color/colorPrimary</item>
+            <item name="colorControlHighlight">@color/colorPrimary</item>
             <item name="md_widget_color">@color/colorPrimary</item>
         </style>
         <!-- 3.1 Label List -->

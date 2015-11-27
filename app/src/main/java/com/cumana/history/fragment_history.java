@@ -42,16 +42,16 @@ public class fragment_history extends Fragment implements  ViewPagerEx.OnPageCha
 
         queryCiudad = sqlite.getCiudad();
 
-        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Fade);
+        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
 
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal", R.mipmap.bg_developers);
-        file_maps.put("Big Bang Theory",R.mipmap.bg_menu);
-        file_maps.put("House of Cards", R.mipmap.intro_1);
-        file_maps.put("Game of Thrones", R.mipmap.intro_2);
+        file_maps.put("Big Bang Theory",R.mipmap._1);
+        file_maps.put("House of Cards", R.mipmap.gallery_1);
+        file_maps.put("Game of Thrones", R.mipmap.gallery_4);
+        file_maps.put("Game of Thrones2", R.mipmap.gallery_5);
 
 
         for(String name : file_maps.keySet()){

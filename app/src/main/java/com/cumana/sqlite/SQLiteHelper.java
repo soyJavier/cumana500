@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.cumana.struct.temp;
 import com.cumana.tables.ciudad;
 import com.cumana.tables.clima;
 import com.cumana.tables.table_img;
@@ -21,7 +22,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static SQLiteHelper mInstance = null;
 
     //Datos generales de la BD
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "cumana";
 
     public static Context context;
@@ -49,7 +50,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_CLIMA = "clima";
 
-    public static String[] TABLA_BD = {"ciudad","ciudad_img","personajes","categorias","categorias_img","clima","subcategorias_img"};
+    private static final String TABLE_TEMP = "temp";
+    private static final String TABLE_TEMP_URL = "url";
+    private static final String TABLE_TEMP_TABLE = "tabla";
+    private static final String TABLE_TEMP_TYPE = "type";
+    private static final String TABLE_TEMP_ID = "_id";
+
+    public static String[] TABLA_BD = {"ciudad","ciudad_img","personajes","categorias","categorias_img","clima","subcategorias_img","temp"};
 
     final public static synchronized SQLiteHelper getHelper(Context ctx){
 
@@ -91,6 +98,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sql = "CREATE TABLE IF NOT EXISTS "+TABLE_CLIMA+" ("+TABLE_CLIMA+" TEXT)";
         db.execSQL(sql);
 
+
+        sql = "CREATE TABLE IF NOT EXISTS "+TABLE_TEMP+" ("+TABLE_TEMP_ID+" TEXT,"+TABLE_TEMP_URL+" TEXT,"+TABLE_TEMP_TABLE+" TEXT,"+TABLE_TEMP_TYPE+" TEXT)";
+        db.execSQL(sql);
+
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -104,6 +115,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return db.insert(TABLA_BD[table], null, values);
         }catch(Exception e){
             return -1;
+        }
+    }
+
+    public long remove(int table,String key,String comparation){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLA_BD[table],key+" = ?",new String[] { String.valueOf(comparation)});
+    }
+
+    public void removeAllBd(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for(int i=0;i<TABLA_BD.length;i++){
+            db.execSQL("DELETE FROM "+TABLA_BD[i]+"");
         }
     }
 
@@ -236,6 +260,33 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 cl = new table_img();
                 cl.set_id(cursor.getString(0));
                 cl.setImg(cursor.getString(1));
+                querySubcat.add(cl);
+
+            } while (cursor.moveToNext());
+        }
+
+        return querySubcat;
+    }
+
+
+    public List<temp> temps(){
+
+        List<temp> querySubcat = new ArrayList<temp>();
+
+        String query = "SELECT * FROM " + TABLA_BD[7]+"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        temp cl = null;
+        if (cursor.moveToFirst()) {
+            do {
+                cl = new temp();
+                cl.set_id(cursor.getString(0));
+                cl.setUrl(cursor.getString(1));
+                cl.setTable(cursor.getInt(2));
+                cl.setType(cursor.getString(3));
+
                 querySubcat.add(cl);
 
             } while (cursor.moveToNext());

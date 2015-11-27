@@ -36,7 +36,6 @@
             android:padding="7dp"
             />
 
-
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="2dip"
@@ -149,11 +148,11 @@
             android:paddingBottom="8dp"
             android:layout_gravity="left"
             android:gravity="left"
-            android:layout_margin="1dp"
             android:id="@+id/subcategory"
             android:textColor="#323232"
-            android:layout_toRightOf="@+id/icon"
-            android:layout_alignParentBottom="true"/>
+            android:text="Subcategory"
+            android:layout_below="@+id/loading"
+            android:layout_toRightOf="@+id/icon"/>
     </RelativeLayout>
 
 </RelativeLayout>

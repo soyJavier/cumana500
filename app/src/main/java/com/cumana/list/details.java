@@ -40,14 +40,14 @@ import java.util.List;
 public class details extends AppCompatActivity {
 
     JSONObject json;
-    TextView details,address,name_places;
+    TextView details,address,name_places,contac;
     ImageView image;
     LinearLayout cService;
 
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private LinearLayoutManager lManager;
-    private LinearLayout location;
+    private LinearLayout location,ContentContac;
     List items = new ArrayList();
 
     ArrayList<String> id = new ArrayList<String>(){{add("handicap");add("kidsfamily");add("ac");add("wifi");add("nightlife");add("pet");add("gayfriendly");add("free");add("walking");add("gym");add("parking");add("pool");add("restaurant");add("suites");add("Conference room");add("Live music");add("Lavandería");add("Bar");add("Vacation Club");}};
@@ -67,7 +67,9 @@ public class details extends AppCompatActivity {
         address = (TextView) findViewById(R.id.address);
         details = (TextView) findViewById(R.id.details);
         location = (LinearLayout) findViewById(R.id.location);
+        ContentContac = (LinearLayout) findViewById(R.id.ContentContac);
         name_places = (TextView) findViewById(R.id.name_places);
+        contac = (TextView) findViewById(R.id.contac);
         cService = (LinearLayout) findViewById(R.id.cService);
         recycler = (RecyclerView) findViewById(R.id.servicios);
         recycler.setHasFixedSize(true);
@@ -141,6 +143,17 @@ public class details extends AppCompatActivity {
                 mDemoSlider.stopAutoCycle();
                 mDemoSlider.setVisibility(View.VISIBLE);
                 image.setVisibility(View.GONE);
+            }
+
+            if(json.getJSONArray("phone").length()>0){
+
+                JSONArray phone = json.getJSONArray("phone");
+                String ctc = "";
+                for(int i=0;i<phone.length();i++){
+                    ctc += ""+phone.getString(i)+"<br>";
+                }
+                contac.setText(Html.fromHtml(ctc));
+                ContentContac.setVisibility(View.VISIBLE);
             }
 
             location.setOnClickListener(new View.OnClickListener() {

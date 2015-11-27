@@ -3,10 +3,12 @@ package com.cumana.maps;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.util.Pair;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -16,13 +18,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import com.cumana.bitmap.converteBitmap;
 import com.cumana.cumana500.R;
 import com.cumana.fonts.TextView;
 import com.cumana.list.details;
 import com.cumana.sqlite.SQLiteHelper;
-import com.cumana.tables.clima;
 import com.cumana.tables.table_img;
 import com.cumana.utils.PlaceData;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,11 +36,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,10 +77,13 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
        sqlite = SQLiteHelper.getHelper(getActivity());
 
-        direction = (TextView) view.findViewById(R.id.direction);
+       direction = (TextView) view.findViewById(R.id.direction);
+
+       DisplayMetrics metrics = new DisplayMetrics();
+       getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
        setHasOptionsMenu(true);
-       mapa =  ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.maps)).getMap();
+       mapa =  ((SupportMapFragment) getMapFragment()).getMap();
 
         if(getArguments().containsKey("single")){
 
@@ -98,7 +99,7 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
                 m.position(new LatLng(single.getDouble("lat"), single.getDouble("lng")));
 
 
-                m.icon(BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(new converteBitmap().StringToBitMap(img.get(0).getImg()), 79, 99, false)));
+                m.icon(BitmapDescriptorFactory.fromBitmap(size(new converteBitmap().StringToBitMap(img.get(0).getImg()))));
 
                 mapa.addMarker(m);
                 mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(single.getDouble("lat"),single.getDouble("lng")), 15));
@@ -142,7 +143,7 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
 
                     lat_.add(i,""+json.getJSONObject(i).getDouble("lat"));
 
-                    m.icon(BitmapDescriptorFactory.fromBitmap(Bitmap.createScaledBitmap(new converteBitmap().StringToBitMap(img.get(0).getImg()), 79, 99, false)));
+                    m.icon(BitmapDescriptorFactory.fromBitmap(size(new converteBitmap().StringToBitMap(img.get(0).getImg()))));
 
                     mapa.addMarker(m);
                 }
@@ -155,6 +156,44 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
 
 
        return view;
+    }
+
+    public Bitmap size(Bitmap bitmap){
+
+        switch(metrics.densityDpi){
+            case DisplayMetrics.DENSITY_LOW:
+                Log.w("n","DENSITY_LOW");
+                return Bitmap.createScaledBitmap(bitmap, 20, 29, false);
+            case DisplayMetrics.DENSITY_MEDIUM:
+                Log.w("n","DENSITY_MEDIUM");
+                return Bitmap.createScaledBitmap(bitmap, 20, 29, false);
+            case DisplayMetrics.DENSITY_HIGH:
+                Log.w("n","DENSITY_HIGH");
+                return Bitmap.createScaledBitmap(bitmap, 28, 39, false);
+            case DisplayMetrics.DENSITY_XHIGH:
+                Log.w("n","DENSITY_XHIGH");
+                return Bitmap.createScaledBitmap(bitmap, 44, 59, false);
+            case DisplayMetrics.DENSITY_XXHIGH:
+                Log.w("n","DENSITY_XXHIGH");
+                return Bitmap.createScaledBitmap(bitmap, 79, 99, false);
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                Log.w("n","DENSITY_XXXHIGH");
+                return Bitmap.createScaledBitmap(bitmap, 79, 99, false);
+            default:
+                return Bitmap.createScaledBitmap(bitmap, 79, 99, false);
+        }
+    }
+
+    private SupportMapFragment getMapFragment() {
+        FragmentManager fm = null;
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            fm = getChildFragmentManager();
+        } else {
+            fm = getFragmentManager();
+        }
+
+        return (SupportMapFragment) fm.findFragmentById(R.id.maps);
     }
 
     @Override
@@ -173,7 +212,7 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
             if(new PlaceData().listPlaces.size()>0) {
                 if (new PlaceData().listPlaces.get(position).getBitmap() != null) {
                     image.setImageBitmap(new PlaceData().listPlaces.get(position).getBitmap());
-                    loading.setVisibility(View.GONE);
+                    loading.setVisibility(View.INVISIBLE);
                 } else {
                     loading.setVisibility(View.VISIBLE);
                     image.setImageResource(android.R.color.white);
@@ -182,7 +221,7 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
                         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                             image.setImageBitmap(bitmap);
                             new PlaceData().listPlaces.get(lat_.indexOf(l + "")).setBitmap(bitmap);
-                            loading.setVisibility(View.GONE);
+                            loading.setVisibility(View.INVISIBLE);
                         }
 
                         @Override
@@ -203,7 +242,7 @@ public class f_maps extends Fragment implements GoogleMap.OnMarkerClickListener,
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                         image.setImageBitmap(bitmap);
                         new PlaceData().listPlaces.get(lat_.indexOf(l + "")).setBitmap(bitmap);
-                        loading.setVisibility(View.GONE);
+                        loading.setVisibility(View.INVISIBLE);
                     }
 
                     @Override

@@ -14,11 +14,11 @@
         android:id="@+id/fondo"
         />
 
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:paddingTop="?attr/actionBarSize"
         android:orientation="vertical"
         >
             <LinearLayout
@@ -35,8 +35,8 @@
                     android:id="@+id/avatar"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FFFFFF"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="@dimen/developers"
+                    android:layout_height="@dimen/developers"
                     android:layout_marginRight="3dp"
                     android:src="@mipmap/developer_1"
                     />
@@ -46,15 +46,15 @@
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/developers_text"
                     android:padding="6dp"
                     android:id="@+id/description_1"
                     android:textColor="@android:color/black"
                     fontify:font="@string/RobotoThin"
-                    app:arrowWidth="15dp"
+                    app:arrowWidth="10dp"
                     app:angle="1dp"
                     app:arrowHeight="10dp"
-                    app:arrowPosition="2dp"
+                    app:arrowPosition="0dp"
                     app:arrowLocation="left"
                     android:alpha="0.8"
                     android:lineSpacingExtra="4dp"
@@ -72,14 +72,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/ic_twitter"
+                    android:id="@+id/t_d_1"
+                    android:contentDescription="01comandos"
                     android:layout_marginRight="2dp"
-                    android:layout_marginLeft="100dp"
+                    android:layout_marginLeft="@dimen/developers_redes"
                     />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/ic_linkedin"
+                    android:contentDescription="https://www.linkedin.com/in/carlos-pérez-92a062a3"
+                    android:id="@+id/l_d_1"
                     />
 
             </LinearLayout>
@@ -90,7 +94,7 @@
                 android:orientation="horizontal"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="14dp"
                 android:weightSum="10"
                 >
 
@@ -103,11 +107,11 @@
                     android:padding="6dp"
                     android:textColor="@android:color/black"
                     fontify:font="@string/RobotoThin"
-                    app:arrowWidth="15dp"
-                    android:textSize="12dp"
-                    app:angle="2dp"
+                    app:arrowWidth="10dp"
+                    android:textSize="@dimen/developers_text"
+                    app:angle="1dp"
                     app:arrowHeight="10dp"
-                    app:arrowPosition="80dp"
+                    app:arrowPosition="0dp"
                     android:lineSpacingExtra="4dp"
                     app:arrowLocation="right"
                     android:alpha="0.8"
@@ -120,10 +124,10 @@
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FFFFFF"
                     android:layout_width="0dp"
-                    android:layout_height="65dp"
+                    android:layout_height="@dimen/developers"
                     android:layout_marginRight="5dp"
                     android:src="@mipmap/developer_2"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="top"
                     />
         </LinearLayout>
 
@@ -139,6 +143,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_twitter"
+                android:id="@+id/t_d_2"
+                android:contentDescription="soyLuishp"
                 android:layout_marginRight="2dp"
                 />
 
@@ -146,7 +152,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_linkedin"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="@dimen/developers_redes"
+                android:id="@+id/l_d_2"
+                android:contentDescription="https://ve.linkedin.com/in/luis-javier-hernandez-perez-b587a92b"
                 />
 
         </LinearLayout>
@@ -157,7 +165,7 @@
             android:orientation="horizontal"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="14dp"
             >
 
 
@@ -165,8 +173,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FFFFFF"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="@dimen/developers"
+                android:layout_height="@dimen/developers"
                 android:layout_marginRight="5dp"
                 android:src="@mipmap/developer_3"
                 />
@@ -179,14 +187,14 @@
                 android:padding="6dp"
                 android:textColor="@android:color/black"
                 fontify:font="@string/RobotoThin"
-                app:arrowWidth="15dp"
-                app:angle="2dp"
+                app:arrowWidth="10dp"
+                app:angle="1dp"
                 android:alpha="0.8"
-                android:textSize="12dp"
+                android:textSize="@dimen/developers_text"
                 android:id="@+id/description_3"
                 app:arrowHeight="10dp"
                 android:lineSpacingExtra="4dp"
-                app:arrowPosition="2dp"
+                app:arrowPosition="0dp"
                 app:arrowLocation="left"
                 app:bubbleColor="#FFFFFF"/>
 
@@ -201,18 +209,78 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_twitter"
+                android:src="@mipmap/ic_linkedin"
+                android:id="@+id/l_d_3"
+                android:contentDescription="https://ve.linkedin.com/in/jose-torrens-538678b4"
                 android:layout_marginRight="2dp"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="@dimen/developers_redes"
                 />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="14dp"
+            android:weightSum="10"
+            >
+
+            <com.github.library.bubbleview.BubbleTextVew
+                android:layout_weight="8"
+                android:layout_centerInParent="true"
+                android:id="@+id/description_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:textColor="@android:color/black"
+                fontify:font="@string/RobotoThin"
+                app:arrowWidth="10dp"
+                android:textSize="@dimen/developers_text"
+                app:angle="1dp"
+                app:arrowHeight="10dp"
+                app:arrowPosition="0dp"
+                android:lineSpacingExtra="4dp"
+                app:arrowLocation="right"
+                android:alpha="0.8"
+                app:bubbleColor="#FFFFFF"/>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_weight="2"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFF"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/developers"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/colaborator"
+                android:layout_gravity="top"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_gravity="right"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_linkedin"
+                android:src="@mipmap/ic_twitter"
+                android:layout_marginRight="@dimen/developers_redes"
+                android:id="@+id/t_d_4"
+                android:contentDescription="AlejandroVene"
                 />
 
         </LinearLayout>
+
 
     </LinearLayout>
 

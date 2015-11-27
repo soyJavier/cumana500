@@ -31,9 +31,11 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@mipmap/ic_download"
+                android:id="@+id/download"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_margin="5dp"
+                android:visibility="gone"
                 />
 
         </RelativeLayout>

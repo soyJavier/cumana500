@@ -62,6 +62,8 @@ public class maps extends AppCompatActivity {
             }
 
         }else{
+            title.setText("Listado de lugares");
+            title.setVisibility(View.VISIBLE);
             params.putString("json","" +getIntent().getExtras().getString("json"));
         }
 
